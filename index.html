@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Fiesta en la Casa del Lobo</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #090c14;
+            --cyan: #76e9ff;
+            --purple: #b18cff;
+            --pink: #ff77b7;
+            --yellow: #ffd76b;
+            --green: #8dffb0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at top, #20263b, transparent 60%),
+                #090c14;
+            color: #f4f6ff;
+            font-family: Inter, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(#ffffff04 1px, transparent 1px),
+                linear-gradient(90deg, #ffffff04 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .wrapper {
+            max-width: 1150px;
+            margin: auto;
+            padding: 45px 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADER */
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #493765;
+            background: #171326;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: #d3baff;
+            margin-bottom: 25px;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            background: #ff77b7;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #ff77b7;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            50% {
+                opacity: .3;
+            }
+        }
+
+        h1 {
+            font-family: "Press Start 2P";
+            font-size: clamp(18px, 4vw, 34px);
+            line-height: 1.8;
+            color: #fff;
+            text-shadow:
+                4px 4px #382651,
+                0 0 30px #b18cff30;
+        }
+
+        h1 span {
+            color: var(--pink);
+        }
+
+        .subtitle {
+            margin-top: 10px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #8998b2;
+        }
+
+        /* COUNTDOWN */
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            max-width: 720px;
+            margin: 40px auto;
+        }
+
+        .time-card {
+            position: relative;
+            padding: 24px 10px;
+            background: linear-gradient(145deg, #171e2d, #0f1520);
+            border: 1px solid #2c394e;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px #0003;
+        }
+
+        .time-card::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            left: 0;
+            right: 0;
+            top: 0;
+            background: linear-gradient(90, transparent, var(--pink), transparent);
+        }
+
+        .number {
+            font-family: "Press Start 2P";
+            font-size: clamp(18px, 3vw, 29px);
+            color: var(--pink);
+            text-shadow: 0 0 20px #ff77b740;
+        }
+
+        .label {
+            font-size: 9px;
+            color: #7f8ba4;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        /* SCENE */
+
+        .scene {
+            height: 420px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #354056;
+            border-radius: 14px;
+            background:
+                linear-gradient(180deg,
+                    #111a2d 0%,
+                    #202840 55%,
+                    #283147 100%);
+            box-shadow:
+                0 25px 80px #0005,
+                inset 0 0 60px #0003;
+        }
+
+        /* SKY */
+
+        .sky {
+            position: absolute;
+            inset: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #dce9ff;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from {
+                opacity: .25;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .moon {
+            position: absolute;
+            right: 12%;
+            top: 40px;
+            width: 55px;
+            height: 55px;
+            background: #fff0bb;
+            box-shadow: 0 0 45px #ffe8a040;
+            clip-path: polygon(25% 0, 75% 0, 100% 25%,
+                    100% 75%, 75% 100%,
+                    25% 100%, 0 75%, 0 25%);
+        }
+
+        /* PARTY LIGHTS */
+
+        .lights {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .light-wire {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 2px;
+            background: #52617c;
+        }
+
+        .light {
+            position: relative;
+            width: 10px;
+            height: 14px;
+            margin-top: 8px;
+            background: var(--color);
+            border-radius: 3px;
+            box-shadow: 0 0 18px var(--color);
+            animation: lightblink 1.5s infinite alternate;
+        }
+
+        .light:nth-child(odd) {
+            animation-delay: .5s;
+        }
+
+        @keyframes lightblink {
+            from {
+                opacity: .4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* HOUSE */
+
+        .house {
+            position: absolute;
+            right: 8%;
+            bottom: 60px;
+            width: 270px;
+            height: 230px;
+            z-index: 2;
+        }
+
+        /* ROOF */
+
+        .roof {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 270px;
+            height: 90px;
+            background: #734b86;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        }
+
+        .roof-highlight {
+            position: absolute;
+            top: 15px;
+            left: 45px;
+            width: 180px;
+            height: 65px;
+            background: #9663a9;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        }
+
+        /* WALLS */
+
+        .house-wall {
+            position: absolute;
+            top: 75px;
+            left: 30px;
+            width: 210px;
+            height: 155px;
+            background: #d4a66f;
+            border: 8px solid #8b5d3d;
+        }
+
+        .wall-detail {
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(0deg,
+                    transparent 0,
+                    transparent 27px,
+                    #b47d4b 27px,
+                    #b47d4b 30px);
+        }
+
+        /* WINDOWS */
+
+        .window {
+            position: absolute;
+            top: 25px;
+            width: 40px;
+            height: 45px;
+            background: #ffe7a0;
+            border: 6px solid #754a36;
+            box-shadow: 0 0 20px #ffe7a050;
+        }
+
+        .window.left {
+            left: 15px;
+        }
+
+        .window.right {
+            right: 15px;
+        }
+
+        .window::before {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 100%;
+            background: #754a36;
+            left: 50%;
+        }
+
+        .window::after {
+            content: "";
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            background: #754a36;
+            top: 50%;
+        }
+
+        /* DOOR */
+
+        .door {
+            position: absolute;
+            bottom: 0;
+            left: 75px;
+            width: 55px;
+            height: 90px;
+            background: #634331;
+            border: 6px solid #422c22;
+        }
+
+        .door-knob {
+            position: absolute;
+            right: 6px;
+            top: 45px;
+            width: 5px;
+            height: 5px;
+            background: #ffd76b;
+        }
+
+        /* HOUSE SIGN */
+
+        .house-sign {
+            position: absolute;
+            top: 90px;
+            right: -35px;
+            background: #3e284d;
+            color: #ffd6fa;
+            padding: 7px 10px;
+            font-family: "Press Start 2P";
+            font-size: 7px;
+            border: 2px solid #9d75bd;
+            transform: rotate(4deg);
+        }
+
+        /* PARTY */
+
+        .party-banner {
+            position: absolute;
+            top: 80px;
+            left: 10%;
+            color: #ffcae6;
+            font-family: "Press Start 2P";
+            font-size: 8px;
+            transform: rotate(-8deg);
+            text-shadow: 3px 3px #6d3765;
+        }
+
+        /* GROUND */
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 65px;
+            background: #131b28;
+            border-top: 4px solid #52627c;
+            z-index: 5;
+        }
+
+        .ground-pattern {
+            height: 100%;
+            background:
+                repeating-linear-gradient(90deg,
+                    #273449 0px,
+                    #273449 40px,
+                    transparent 40px,
+                    transparent 80px);
+            animation: ground 0.5s linear infinite;
+        }
+
+        @keyframes ground {
+            to {
+                transform: translateX(-80px);
+            }
+        }
+
+        /* WOLF */
+
+        .wolf {
+            position: absolute;
+            z-index: 6;
+            left: 8%;
+            bottom: 55px;
+            width: 290px;
+            height: 260px;
+            animation: wolfjump .22s infinite alternate;
+            filter: drop-shadow(0 10px 0 #0004);
+        }
+
+        @keyframes wolfjump {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-8px);
+            }
+        }
+
+        .wolf-leg {
+            transform-box: fill-box;
+            transform-origin: top center;
+            animation: runleg .18s infinite alternate;
+        }
+
+        .wolf-leg.alt {
+            animation-delay: .09s;
+        }
+
+        @keyframes runleg {
+            from {
+                transform: rotate(-30deg);
+            }
+
+            to {
+                transform: rotate(30deg);
+            }
+        }
+
+        .wolf-tail {
+            transform-box: fill-box;
+            transform-origin: right center;
+            animation: tailmove .25s infinite alternate;
+        }
+
+        @keyframes tailmove {
+            from {
+                transform: rotate(-15deg);
+            }
+
+            to {
+                transform: rotate(15deg);
+            }
+        }
+
+        /* AMONG US */
+
+        .crew {
+            position: absolute;
+            z-index: 7;
+            left: 35%;
+            bottom: 55px;
+            display: flex;
+            align-items: flex-end;
+            gap: 10px;
+        }
+
+        .crewmate {
+            width: 75px;
+            height: 100px;
+            image-rendering: pixelated;
+            animation: bounce .2s infinite alternate;
+            filter: drop-shadow(0 7px 0 #0004);
+        }
+
+        .crewmate:nth-child(2) {
+            animation-delay: .07s;
+        }
+
+        .crewmate:nth-child(3) {
+            animation-delay: .12s;
+        }
+
+        .crewmate:nth-child(4) {
+            animation-delay: .18s;
+        }
+
+        .crewmate:nth-child(5) {
+            animation-delay: .23s;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-6px);
+            }
+        }
+
+        .crew-leg {
+            transform-box: fill-box;
+            transform-origin: top center;
+            animation: legmove .18s infinite alternate;
+        }
+
+        .crew-leg.alt {
+            animation-delay: .09s;
+        }
+
+        @keyframes legmove {
+            from {
+                transform: rotate(-25deg);
+            }
+
+            to {
+                transform: rotate(25deg);
+            }
+        }
+
+        /* HATS */
+
+        .hat {
+            position: absolute;
+            z-index: 10;
+        }
+
+        /* CONFETTI */
+
+        .confetti {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            top: -20px;
+            animation: confetti-fall linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            from {
+                transform: translateY(-30px) rotate(0);
+            }
+
+            to {
+                transform: translateY(450px) rotate(720deg);
+            }
+        }
+
+        /* INFO */
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 20px;
+            border: 1px solid #293448;
+            border-radius: 10px;
+            background: #101722;
+        }
+
+        .info-box {
+            text-align: center;
+            flex: 1;
+        }
+
+        .info-label {
+            color: #718099;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        .info-value {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #f2f5ff;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            font-family: "Press Start 2P";
+            font-size: 8px;
+            color: #7d8ba4;
+            line-height: 2.5;
+        }
+
+        .footer span {
+            color: var(--pink);
+        }
+
+        @media(max-width:700px) {
+
+            .wrapper {
+                padding: 30px 12px;
+            }
+
+            .countdown {
+                gap: 6px;
+            }
+
+            .time-card {
+                padding: 20px 5px;
+            }
+
+            .scene {
+                height: 340px;
+            }
+
+            .house {
+                right: -10%;
+                transform: scale(.7);
+                transform-origin: bottom right;
+            }
+
+            .wolf {
+                left: 1%;
+                width: 190px;
+                height: 190px;
+            }
+
+            .crew {
+                left: 35%;
+                gap: 2px;
+            }
+
+            .crewmate {
+                width: 50px;
+                height: 70px;
+            }
+
+            .party-banner {
+                font-size: 6px;
+            }
+
+            .info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+
+            <div class="badge">
+                <div class="badge-dot"></div>
+                EVENTO ESPECIAL
+            </div>
+
+            <h1>
+                FIESTA EN LA<br>
+                <span>CASA DEL LOBO</span>
+            </h1>
+
+            <p class="subtitle">
+                EL LOBO Y SU TRIPULACIÓN ESTÁN EN CAMINO
+            </p>
+
+        </header>
+
+        <!-- COUNTDOWN -->
+
+        <section class="countdown">
+
+            <div class="time-card">
+                <div class="number" id="days">00</div>
+                <div class="label">DÍAS</div>
+            </div>
+
+            <div class="time-card">
+                <div class="number" id="hours">00</div>
+                <div class="label">HORAS</div>
+            </div>
+
+            <div class="time-card">
+                <div class="number" id="minutes">00</div>
+                <div class="label">MINUTOS</div>
+            </div>
+
+            <div class="time-card">
+                <div class="number" id="seconds">00</div>
+                <div class="label">SEGUNDOS</div>
+            </div>
+
+        </section>
+
+        <!-- SCENE -->
+
+        <section class="scene">
+
+            <!-- STARS -->
+            <div class="sky" id="stars"></div>
+
+            <div class="moon"></div>
+
+            <!-- PARTY LIGHTS -->
+            <div class="lights">
+                <div class="light-wire"></div>
+                <div class="light" style="--color:#ff6dba"></div>
+                <div class="light" style="--color:#6be7ff"></div>
+                <div class="light" style="--color:#ffe16b"></div>
+                <div class="light" style="--color:#b18cff"></div>
+                <div class="light" style="--color:#8dffb0"></div>
+                <div class="light" style="--color:#ff6dba"></div>
+                <div class="light" style="--color:#6be7ff"></div>
+                <div class="light" style="--color:#ffe16b"></div>
+            </div>
+
+            <div class="party-banner">
+                PARTY<br>TONIGHT!
+            </div>
+
+            <!-- HOUSE -->
+            <div class="house">
+
+                <div class="roof"></div>
+                <div class="roof-highlight"></div>
+
+                <div class="house-wall">
+                    <div class="wall-detail"></div>
+
+                    <div class="window left"></div>
+                    <div class="window right"></div>
+
+                    <div class="door">
+                        <div class="door-knob"></div>
+                    </div>
+                </div>
+
+                <div class="house-sign">
+                    CASA<br>DEL LOBO
+                </div>
+
+            </div>
+
+            <!-- WOLF -->
+
+            <div class="wolf">
+
+                <svg viewBox="0 0 64 64" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+
+                    <!-- TAIL -->
+                    <g class="wolf-tail">
+                        <rect x="5" y="30" width="8" height="8" fill="#64758e" />
+                        <rect x="1" y="26" width="8" height="8" fill="#8799b3" />
+                        <rect x="0" y="22" width="8" height="8" fill="#aebdd3" />
+                        <rect x="4" y="18" width="8" height="8" fill="#d3deed" />
+                        <rect x="8" y="14" width="4" height="8" fill="#aebdd3" />
+                    </g>
+
+                    <!-- BODY -->
+                    <rect x="12" y="25" width="28" height="18" fill="#71839d" />
+                    <rect x="16" y="21" width="28" height="22" fill="#8fa2bc" />
+                    <rect x="12" y="29" width="32" height="14" fill="#657790" />
+
+                    <!-- BODY SHADING -->
+                    <rect x="16" y="25" width="4" height="4" fill="#c0cde0" />
+                    <rect x="20" y="21" width="16" height="4" fill="#b1c1d7" />
+                    <rect x="36" y="25" width="4" height="4" fill="#c0cde0" />
+
+                    <!-- CHEST -->
+                    <rect x="35" y="29" width="12" height="14" fill="#bac9dc" />
+                    <rect x="39" y="33" width="8" height="10" fill="#e1e9f5" />
+
+                    <!-- HEAD -->
+                    <rect x="35" y="12" width="21" height="20" fill="#a7b9d1" />
+                    <rect x="39" y="8" width="13" height="8" fill="#c5d3e5" />
+
+                    <!-- EARS -->
+                    <rect x="38" y="4" width="8" height="12" fill="#71839d" />
+                    <rect x="42" y="0" width="4" height="8" fill="#d9e4f3" />
+                    <rect x="50" y="4" width="8" height="12" fill="#71839d" />
+                    <rect x="54" y="0" width="4" height="8" fill="#d9e4f3" />
+
+                    <!-- EAR DETAILS -->
+                    <rect x="40" y="8" width="4" height="4" fill="#b18cff" />
+                    <rect x="52" y="8" width="4" height="4" fill="#b18cff" />
+
+                    <!-- FACE -->
+                    <rect x="43" y="16" width="9" height="8" fill="#d9e4f3" />
+                    <rect x="48" y="20" width="12" height="8" fill="#c5d3e5" />
+
+                    <!-- EYE -->
+                    <rect x="47" y="16" width="4" height="4" fill="#182231" />
+                    <rect x="48" y="16" width="2" height="2" fill="#6be7ff" />
+
+                    <!-- SNOUT -->
+                    <rect x="54" y="22" width="8" height="6" fill="#e5edf8" />
+                    <rect x="60" y="24" width="4" height="4" fill="#17202d" />
+
+                    <!-- MOUTH -->
+                    <rect x="54" y="28" width="8" height="4" fill="#34445a" />
+                    <rect x="56" y="30" width="4" height="2" fill="#fff" />
+
+                    <!-- FUR -->
+                    <rect x="32" y="28" width="4" height="8" fill="#e0e9f5" />
+                    <rect x="28" y="32" width="4" height="8" fill="#b8c8de" />
+                    <rect x="32" y="36" width="4" height="4" fill="#e0e9f5" />
+
+                    <rect x="16" y="30" width="4" height="4" fill="#d9e4f3" />
+                    <rect x="12" y="34" width="4" height="4" fill="#aebdd3" />
+                    <rect x="20" y="38" width="4" height="4" fill="#d9e4f3" />
+
+                    <!-- FRONT LEGS -->
+                    <g class="wolf-leg">
+                        <rect x="34" y="41" width="8" height="12" fill="#64758e" />
+                        <rect x="30" y="49" width="12" height="8" fill="#8799b3" />
+                        <rect x="26" y="53" width="12" height="4" fill="#c0cde0" />
+                    </g>
+
+                    <g class="wolf-leg alt">
+                        <rect x="42" y="41" width="8" height="12" fill="#71839d" />
+                        <rect x="46" y="49" width="8" height="8" fill="#8fa2bc" />
+                        <rect x="46" y="53" width="12" height="4" fill="#c0cde0" />
+                    </g>
+
+                    <!-- BACK LEGS -->
+                    <g class="wolf-leg alt">
+                        <rect x="16" y="40" width="8" height="12" fill="#52637d" />
+                        <rect x="12" y="48" width="12" height="8" fill="#71839d" />
+                        <rect x="8" y="53" width="12" height="4" fill="#aebdd3" />
+                    </g>
+
+                    <g class="wolf-leg">
+                        <rect x="24" y="41" width="8" height="12" fill="#64758e" />
+                        <rect x="28" y="49" width="8" height="8" fill="#8799b3" />
+                        <rect x="28" y="53" width="12" height="4" fill="#c0cde0" />
+                    </g>
+
+                </svg>
+
+            </div>
+
+            <!-- CREW -->
+
+            <div class="crew">
+
+                <!-- RED WITH PARTY HAT -->
+                <svg class="crewmate" viewBox="0 0 40 52">
+
+                    <!-- party hat -->
+                    <rect x="14" y="0" width="8" height="4" fill="#fff" />
+                    <rect x="10" y="4" width="16" height="4" fill="#ff77b7" />
+                    <rect x="14" y="8" width="8" height="4" fill="#ffd76b" />
+                    <rect x="8" y="10" width="20" height="4" fill="#b18cff" />
+
+                    <!-- backpack -->
+                    <rect x="2" y="19" width="8" height="20" fill="#9c2635" />
+                    <rect x="0" y="23" width="6" height="12" fill="#c73546" />
+
+                    <!-- body -->
+                    <rect x="12" y="12" width="20" height="24" fill="#ef4050" />
+                    <rect x="8" y="18" width="28" height="22" fill="#ef4050" />
+                    <rect x="4" y="24" width="32" height="14" fill="#ef4050" />
+
+                    <!-- visor -->
+                    <rect x="18" y="16" width="16" height="10" fill="#74a8c9" />
+                    <rect x="20" y="14" width="12" height="10" fill="#b9eaff" />
+                    <rect x="22" y="16" width="8" height="4" fill="#e9fbff" />
+
+                    <!-- legs -->
+                    <g class="crew-leg">
+                        <rect x="8" y="37" width="12" height="10" fill="#c32f3e" />
+                        <rect x="6" y="44" width="14" height="4" fill="#8d2431" />
+                    </g>
+
+                    <g class="crew-leg alt">
+                        <rect x="24" y="37" width="10" height="10" fill="#c32f3e" />
+                        <rect x="24" y="44" width="14" height="4" fill="#8d2431" />
+                    </g>
+
+                    <rect x="8" y="28" width="4" height="6" fill="#ff6876" />
+                </svg>
+
+                <!-- BLUE COWBOY -->
+                <svg class="crewmate" viewBox="0 0 40 52">
+
+                    <!-- cowboy hat -->
+                    <rect x="8" y="4" width="24" height="4" fill="#a66b32" />
+                    <rect x="12" y="0" width="16" height="8" fill="#c88b4c" />
+                    <rect x="14" y="4" width="12" height="4" fill="#ffd76b" />
+                    <rect x="4" y="8" width="32" height="4" fill="#8e592b" />
+
+                    <!-- backpack -->
+                    <rect x="2" y="19" width="8" height="20" fill="#2346ae" />
+                    <rect x="0" y="23" width="6" height="12" fill="#3457d3" />
+
+                    <!-- body -->
+                    <rect x="12" y="12" width="20" height="24" fill="#4361ee" />
+                    <rect x="8" y="18" width="28" height="22" fill="#4361ee" />
+                    <rect x="4" y="24" width="32" height="14" fill="#4361ee" />
+
+                    <!-- visor -->
+                    <rect x="18" y="16" width="16" height="10" fill="#74a8c9" />
+                    <rect x="20" y="14" width="12" height="10" fill="#b9eaff" />
+                    <rect x="22" y="16" width="8" height="4" fill="#e9fbff" />
+
+                    <!-- legs -->
+                    <g class="crew-leg">
+                        <rect x="8" y="37" width="12" height="10" fill="#2948b9" />
+                        <rect x="6" y="44" width="14" height="4" fill="#1e378b" />
+                    </g>
+
+                    <g class="crew-leg alt">
+                        <rect x="24" y="37" width="10" height="10" fill="#2948b9" />
+                        <rect x="24" y="44" width="14" height="4" fill="#1e378b" />
+                    </g>
+                </svg>
+
+                <!-- GREEN PARTY HAT -->
+                <svg class="crewmate" viewBox="0 0 40 52">
+
+                    <!-- party hat -->
+                    <rect x="18" y="0" width="4" height="4" fill="#fff" />
+                    <rect x="14" y="4" width="12" height="4" fill="#ffdb4a" />
+                    <rect x="10" y="8" width="20" height="4" fill="#ff77b7" />
+                    <rect x="8" y="12" width="24" height="4" fill="#b18cff" />
+
+                    <!-- backpack -->
+                    <rect x="2" y="19" width="8" height="20" fill="#287a42" />
+                    <rect x="0" y="23" width="6" height="12" fill="#399d55" />
+
+                    <!-- body -->
+                    <rect x="12" y="14" width="20" height="22" fill="#52d273" />
+                    <rect x="8" y="20" width="28" height="20" fill="#52d273" />
+                    <rect x="4" y="26" width="32" height="12" fill="#52d273" />
+
+                    <!-- visor -->
+                    <rect x="18" y="18" width="16" height="10" fill="#74a8c9" />
+                    <rect x="20" y="16" width="12" height="10" fill="#b9eaff" />
+                    <rect x="22" y="18" width="8" height="4" fill="#e9fbff" />
+
+                    <!-- legs -->
+                    <g class="crew-leg">
+                        <rect x="8" y="37" width="12" height="10" fill="#329b50" />
+                        <rect x="6" y="44" width="14" height="4" fill="#226a37" />
+                    </g>
+
+                    <g class="crew-leg alt">
+                        <rect x="24" y="37" width="10" height="10" fill="#329b50" />
+                        <rect x="24" y="44" width="14" height="4" fill="#226a37" />
+                    </g>
+                </svg>
+
+                <!-- PURPLE PARTY HAT -->
+                <svg class="crewmate" viewBox="0 0 40 52">
+
+                    <!-- hat -->
+                    <rect x="16" y="0" width="8" height="4" fill="#fff" />
+                    <rect x="12" y="4" width="16" height="4" fill="#b18cff" />
+                    <rect x="8" y="8" width="24" height="4" fill="#ff77b7" />
+                    <rect x="4" y="12" width="32" height="4" fill="#ffd76b" />
+
+                    <!-- backpack -->
+                    <rect x="2" y="19" width="8" height="20" fill="#6945b6" />
+                    <rect x="0" y="23" width="6" height="12" fill="#8059d3" />
+
+                    <!-- body -->
+                    <rect x="12" y="14" width="20" height="22" fill="#a37aff" />
+                    <rect x="8" y="20" width="28" height="20" fill="#a37aff" />
+                    <rect x="4" y="26" width="32" height="12" fill="#a37aff" />
+
+                    <!-- visor -->
+                    <rect x="18" y="18" width="16" height="10" fill="#74a8c9" />
+                    <rect x="20" y="16" width="12" height="10" fill="#b9eaff" />
+                    <rect x="22" y="18" width="8" height="4" fill="#e9fbff" />
+
+                    <!-- legs -->
+                    <g class="crew-leg">
+                        <rect x="8" y="37" width="12" height="10" fill="#8059d3" />
+                        <rect x="6" y="44" width="14" height="4" fill="#583b96" />
+                    </g>
+
+                    <g class="crew-leg alt">
+                        <rect x="24" y="37" width="10" height="10" fill="#8059d3" />
+                        <rect x="24" y="44" width="14" height="4" fill="#583b96" />
+                    </g>
+                </svg>
+
+            </div>
+
+            <!-- GROUND -->
+            <div class="ground">
+                <div class="ground-pattern"></div>
+            </div>
+
+        </section>
+
+        <!-- INFO -->
+
+        <div class="info">
+
+            <div class="info-box">
+                <div class="info-label">EVENTO</div>
+                <div class="info-value">FIESTA EN CASA DEL LOBO</div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-label">FECHA</div>
+                <div class="info-value">20 NOVIEMBRE 2026</div>
+            </div>
+
+            <div class="info-box">
+                <div class="info-label">HORA</div>
+                <div class="info-value">16:30 HRS</div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <p>EL LOBO ESTÁ ESPERANDO</p>
+            <p style="margin-top: 12px;">
+                <span>LOS AMONG US VIENEN EN CAMINO</span>
+            </p>
+        </footer>
+
+    </div>
+
+    <script>
+
+        // ==========================================
+        // COUNTDOWN
+        // ==========================================
+
+        // Fecha en hora Bolivia UTC-4
+        const targetDate = new Date("2026-11-20T16:30:00-04:00");
+
+        function updateCountdown() {
+
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+
+                document.querySelector("h1").innerHTML =
+                    "¡LA FIESTA<br><span>COMENZÓ!</span>";
+
+                document.querySelector(".subtitle").textContent =
+                    "BIENVENIDOS A LA CASA DEL LOBO";
+
+                return;
+            }
+
+            const days = Math.floor(diff / 86400000);
+            const hours = Math.floor(diff / 3600000 % 24);
+            const minutes = Math.floor(diff / 60000 % 60);
+            const seconds = Math.floor(diff / 1000 % 60);
+
+            document.getElementById("days").textContent =
+                String(days).padStart(2, "0");
+
+            document.getElementById("hours").textContent =
+                String(hours).padStart(2, "0");
+
+            document.getElementById("minutes").textContent =
+                String(minutes).padStart(2, "0");
+
+            document.getElementById("seconds").textContent =
+                String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+
+        // ==========================================
+        // STARS
+        // ==========================================
+
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 65; i++) {
+
+            const star = document.createElement("div");
+
+            star.className = "star";
+
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 65 + "%";
+            star.style.animationDelay = Math.random() * 3 + "s";
+
+            stars.appendChild(star);
+        }
+
+
+        // ==========================================
+        // CONFETTI
+        // ==========================================
+
+        const scene = document.querySelector(".scene");
+
+        const colors = [
+            "#ff77b7",
+            "#6be7ff",
+            "#ffd76b",
+            "#b18cff",
+            "#8dffb0"
+        ];
+
+        for (let i = 0; i < 35; i++) {
+
+            const confetti = document.createElement("div");
+
+            confetti.className = "confetti";
+
+            confetti.style.left = Math.random() * 100 + "%";
+            confetti.style.background = colors[
+                Math.floor(Math.random() * colors.length)
+            ];
+
+            confetti.style.animationDuration =
+                4 + Math.random() * 6 + "s";
+
+            confetti.style.animationDelay =
+                Math.random() * 5 + "s";
+
+            scene.appendChild(confetti);
+        }
+
+    </script>
+
+</body>
+
+</html>
